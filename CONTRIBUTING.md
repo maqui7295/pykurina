@@ -1,30 +1,3 @@
-```{todo} THIS IS SUPPOSED TO BE AN EXAMPLE. MODIFY IT ACCORDING TO YOUR NEEDS!
-
-   The document assumes you are using a source repository service that promotes a
-   contribution model similar to [GitHub's fork and pull request workflow].
-   While this is true for the majority of services (like GitHub, GitLab,
-   BitBucket), it might not be the case for private repositories (e.g., when
-   using Gerrit).
-
-   Also notice that the code examples might refer to GitHub URLs or the text
-   might use GitHub specific terminology (e.g., *Pull Request* instead of *Merge
-   Request*).
-
-   Please make sure to check the document having these assumptions in mind
-   and update things accordingly.
-```
-
-```{todo} Provide the correct links/replacements at the bottom of the document.
-```
-
-```{todo} You might want to have a look on [PyScaffold's contributor's guide],
-
-   especially if your project is open source. The text should be very similar to
-   this template, but there are a few extra contents that you might decide to
-   also include, like mentioning labels of your issue tracker or automated
-   releases.
-```
-
 # Contributing
 
 Welcome to `pykurina` contributor's guide.
@@ -44,7 +17,7 @@ behavior guidelines.
 ## Issue Reports
 
 If you experience bugs or general issues with `pykurina`, please have a look
-on the [issue tracker].
+on the [issue tracker](https://github.com/maqui7295/pykurina/issues).
 If you don't see anything useful there, please feel free to fire an issue report.
 
 :::{tip}
@@ -64,32 +37,24 @@ you help us to identify the root cause of the issue.
 You can help improve `pykurina` docs by making them more readable and coherent, or
 by adding missing information and correcting mistakes.
 
-`pykurina` documentation uses [Sphinx] as its main documentation compiler.
+`pykurina` documentation is written in [markdown](https://www.markdownguide.org/basic-syntax/) and uses [Sphinx] as its main documentation compiler.
 This means that the docs are kept in the same repository as the project code, and
 that any documentation update is done in the same way was a code contribution.
 
-```{todo} Don't forget to mention which markup language you are using.
+:::{tip}
+   Please notice that the [GitHub web interface] provides a quick way of
+   propose changes in `pykurina`'s files. While this mechanism can
+   be tricky for normal code contributions, it works perfectly fine for
+   contributing to the docs, and can be quite handy.
 
-    e.g.,  [reStructuredText] or [CommonMark] with [MyST] extensions.
-```
-
-```{todo} If your project is hosted on GitHub, you can also mention the following tip:
-
-   :::{tip}
-      Please notice that the [GitHub web interface] provides a quick way of
-      propose changes in `pykurina`'s files. While this mechanism can
-      be tricky for normal code contributions, it works perfectly fine for
-      contributing to the docs, and can be quite handy.
-
-      If you are interested in trying this method out, please navigate to
-      the `docs` folder in the source [repository], find which file you
-      would like to propose changes and click in the little pencil icon at the
-      top, to open [GitHub's code editor]. Once you finish editing the file,
-      please write a message in the form at the bottom of the page describing
-      which changes have you made and what are the motivations behind them and
-      submit your proposal.
-   :::
-```
+   If you are interested in trying this method out, please navigate to
+   the `docs` folder in the source [repository], find which file you
+   would like to propose changes and click in the little pencil icon at the
+   top, to open [GitHub's code editor]. Once you finish editing the file,
+   please write a message in the form at the bottom of the page describing
+   which changes have you made and what are the motivations behind them and
+   submit your proposal.
+:::
 
 When working on documentation changes in your local machine, you can
 compile them using [tox] :
@@ -107,12 +72,9 @@ python3 -m http.server --directory 'docs/_build/html'
 
 ## Code Contributions
 
-```{todo} Please include a reference or explanation about the internals of the project.
+`pykurina` is simply a facade or wrapper over [polars APIs]. The `polars` API is very similar to [pandas] APIs, hence familiarity with either `pandas` or `polars` will help.
 
-   An architecture description, design principles or at least a summary of the
-   main concepts will make it easy for potential contributors to get started
-   quickly.
-```
+Functions which clean columns are chained and iteratively applied to the columns of interest. Those that work on dataframes are provided as hooks into a `polars` dataframe.
 
 ### Submit an issue
 
@@ -160,9 +122,6 @@ conda activate pykurina
 
    to be able to import the package under development in the Python REPL.
 
-   ```{todo} if you are not using pre-commit, please remove the following item:
-   ```
-
 5. Install [pre-commit]:
 
    ```
@@ -196,9 +155,6 @@ conda activate pykurina
    ```
 
    to record your changes in [git].
-
-   ```{todo} if you are not using pre-commit, please remove the following item:
-   ```
 
    Please make sure to see the validation messages from [pre-commit] and fix
    any eventual issues.
@@ -241,13 +197,9 @@ conda activate pykurina
 2. Go to the web page of your fork and click "Create pull request"
    to send your changes for review.
 
-   ```{todo} if you are using GitHub, you can uncomment the following paragraph
-
-      Find more detailed information in [creating a PR]. You might also want to open
-      the PR as a draft first and mark it as ready for review after the feedbacks
-      from the continuous integration (CI) system or any required fixes.
-
-   ```
+   Find more detailed information in [creating a PR]. You might also want to open
+   the PR as a draft first and mark it as ready for review after the feedbacks
+   from the continuous integration (CI) system or any required fixes.
 
 ### Troubleshooting
 
@@ -306,12 +258,6 @@ package:
 
 ### Releases
 
-```{todo} This section assumes you are using PyPI to publicly release your package.
-
-   If instead you are using a different/private package index, please update
-   the instructions accordingly.
-```
-
 If you are part of the group of maintainers and have correct user permissions
 on [PyPI], the following steps can be used to release a new version for
 `pykurina`:
@@ -334,7 +280,6 @@ on [PyPI], the following steps can be used to release a new version for
     communities, the general ideas behind collaborating with other developers
     to collectively create software are general and can be applied to all sorts
     of environments, including private companies and proprietary code bases.
-
 
 [black]: https://pypi.org/project/black/
 [commonmark]: https://commonmark.org/
@@ -362,10 +307,7 @@ on [PyPI], the following steps can be used to release a new version for
 [tox]: https://tox.readthedocs.io/en/stable/
 [virtual environment]: https://realpython.com/python-virtual-environments-a-primer/
 [virtualenv]: https://virtualenv.pypa.io/en/stable/
-
-
-```{todo} Please review and change the following definitions:
-```
-
-[repository]: https://github.com/<USERNAME>/pykurina
-[issue tracker]: https://github.com/<USERNAME>/pykurina/issues
+[repository]: https://github.com/maqui7295/pykurina
+[issue tracker]: https://github.com/maqui7295/pykurina/issues
+[polars APIs]: https://pola-rs.github.io/polars/py-polars/html/reference/index.html
+[pandas]: https://pandas.pydata.org/docs/index.html
