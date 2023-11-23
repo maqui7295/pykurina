@@ -3,7 +3,7 @@ from typing import Any
 
 import polars as pl
 
-import pykurina.shared
+import pykurina.utils
 import pykurina.wrappers
 
 
@@ -11,10 +11,6 @@ import pykurina.wrappers
 class ColumnActionShortcut:
     def __init__(self, s: pl.Series):
         self._s = s
-
-    def square(self) -> pl.Series:
-        self._s = self._s * self._s
-        return self
 
     def __call__(self) -> pl.Series:
         return self.get()
@@ -26,7 +22,7 @@ class ColumnActionShortcut:
         def act(action, self):
             self._s = action(self._s)
 
-        f = pykurina.shared._configure_action_for_instance(
+        f = pykurina.utils._configure_action_for_instance(
             __name, act, pykurina.wrappers
         )
         setattr(self, __name, types.MethodType(f, self))
