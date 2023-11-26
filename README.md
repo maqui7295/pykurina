@@ -36,7 +36,7 @@ Not yet available
 
 ### Cleaning Columns
 
-- [ ] Data type conversion - numeric, categorical, date, string/text, etc
+- [x] Data type conversion - numeric, categorical, date, string/text, etc
 - [ ] Cap numeric/date column to specific max/min/formula/value
 - [ ] Replace numeric outliers (with min/max/specified value)
 - [ ] Fill missing values (numeric/categorical) with mean/median/mode

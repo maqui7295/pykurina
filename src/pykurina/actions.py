@@ -1,5 +1,17 @@
-"""
-Contains the action class that applies a series of cleaning functions to a column.
+"""This module contains utitilities for creating a series of cleaning functions.
+
+The :func:`clean` function instantiates a :class:`ColumnActions` class.
+The instance created contains dynamically imports methods from the wrappers module.
+The method calls are chainable since each call returns the ColumnActions instance.
+
+Typical usage example::
+
+    actions = {
+        'column1': clean().trim().to_int(),
+        'column2': clean().trim().replace('something', 'something_else'),
+        'column3': clean().trim().remove('something')
+    }
+
 """
 
 import types
@@ -13,18 +25,18 @@ import pykurina.wrappers
 
 # https://stackoverflow.com/questions/972/adding-a-method-to-an-existing-object-instance-in-python
 class ColumnActions:
-    """Performs multiple cleaning actions on a column using chainable methods"""
+    """Cleans a column using dynamically imported chainable methods."""
 
-    def __init__(self, wrappers: types.ModuleType):
-        """Create a ColumnAction instance
+    def __init__(self, wrappers: types.ModuleType) -> None:
+        """Create a ColumnAction instance.
         Args:
           wrappers (ModuleType): A module containing the wrapped function
         """
         self.functions: list[Callable] = []
         self.wrappers: types.ModuleType = wrappers
 
-    def __call__(self, column: pl.Series):
-        """Apply a list of functions to a polars column
+    def __call__(self, column: pl.Series) -> pl.Series:
+        """Applies the list of functions to a polars column.
         Args:
           column (pl.Series): A polars column
         Returns:
@@ -35,11 +47,17 @@ class ColumnActions:
         return column
 
     def __getattr__(self, __name: str) -> Any:
-        """Dynamically call a function from the wrappers module
+        """Dynamically calls a function from the wrappers module.
+
         Args:
-          __name (str): The function to retrieve from self.wrappers
+          __name (str): The function to retrieve from self.wrappers.
+
         Returns:
-          ColumnActions: An instance of ColumnActions
+          An instance of ColumnActions.
+
+        Raises:
+          AttributeError:
+            An error occurs if the function is missing from wrappers module.
         """
 
         def action(func, self):
@@ -51,5 +69,5 @@ class ColumnActions:
 
 
 def clean() -> ColumnActions:
-    """A factory function that creates an instance of ColumnActions"""
+    """Creates an instance of ColumnActions."""
     return ColumnActions(pykurina.wrappers)
